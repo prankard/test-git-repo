@@ -3,5 +3,6 @@
     <echo message="Hello, World"/>
     <mkdir dir="temp"/>
     <mkdir dir="temp/thisiscontentdirectory"/>
+    <mkdir dir="temp/thisisanewdirectory"/>
   </target>
 </project>
