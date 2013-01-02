@@ -1,7 +1,7 @@
 <project default="hello">
   <target name="hello">
     <echo message="Hello, World"/>
-    <echo mkdir="temp"/>
-    <echo mkdir="temp/thisiscontentdirectory"/>
+    <mkdir dir="temp"/>
+    <mkdir dir="temp/thisiscontentdirectory"/>
   </target>
 </project>
