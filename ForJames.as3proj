@@ -41,7 +41,7 @@
     <option loadExterns="" />
     <option staticLinkRSL="True" />
     <option additional="" />
-    <option compilerConstants="DEBUG::colour,0xff0000" />
+    <option compilerConstants="DEBUG::colour,0x996600" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->
