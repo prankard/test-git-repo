@@ -1,34 +1,42 @@
 #!/bin/bash
+# Uncomment this line to run locally
+#FLEX_HOME=/Users/james/Development/SDK/Flash/Flex4.6_AIR3.4
 
-######################
-## CONFIG VARIABLES ##
-######################
+#######
+### Makes the TEMP folder
 
-
-
-FLEX_HOME=/Users/james/Development/SDK/Flash/Flex4.6_AIR3.4
-
-
-# Make the temp directory
 if [ ! -d ./temp ]; then
 	mkdir temp
 fi
 
-# Creates a new config file (flex_config.xml)
-for PROJECT_FILE in ../*.as3proj; 
-	do echo $PROJECT_FILE;
-	source ./inc/getinfofromproject.sh $PROJECT_FILE;
-done;
+#######
+### Compiles SWF
 
-for CONFIG_FILE in ../obj/*.xml; 
-	do echo $CONFIG_FILE;
-	bash ./inc/changeflashdevelopxml.sh $CONFIG_FILE;
-done;
+cd ./inc
+bash CompileSWF.sh
+cd ..
 
-$FLEX_HOME/bin/mxmlc -load-config+=flex_config.xml -o ../$path $additional
+#######
+### COPY THE BIN FOLDER
 
-# Cleanup our config
-rm flex_config.xml
-
-# Copy everything from bin
 cp -r ../bin/* temp
+
+
+
+######
+### COMPILE IPA
+
+# Uncomment the select option you need
+#export SELECT_OPTION='apk'
+#export SELECT_OPTION='apk-debug'
+#export SELECT_OPTION='apk-captive-runtime'
+export SELECT_OPTION='ipa-test-interpreter'
+#export SELECT_OPTION='ipa-debug-interpreter'
+#export SELECT_OPTION='ipa-test'
+#export SELECT_OPTION='ipa-debug'
+#export SELECT_OPTION='ipa-ad-hoc'
+#export SELECT_OPTION='ipa-app-store'
+
+cd ./inc
+bash PackageApp.sh
+cd ..
